@@ -1,0 +1,64 @@
+<div class="container d-flex justify-content-center" style="padding: 10px;">
+  <div  class="card" style="padding: 10px; margin:0px auto; width:70%;">
+    <h1 class="card-title">{{selectedBook.title}}</h1>
+    <h2 class="card-subtitle text-muted">{{selectedBook.authorId}}</h2>
+    <h5 class="card-text">Genre: {{selectedBook.genreId}}</h5>
+    <h5 class="card-text">Edition: {{selectedBook.edition}}</h5>
+    <h5  class="card-text">Publisher: {{selectedBook.publisherId}}</h5>
+  </div>
+</div>
+
+  <div *ngIf="authorizationLevel == 2">
+    <div class="container d-flex justify-content-center">
+    <button class="btn btn-warning btn-lg" (click)="startLending()" *ngIf="!userDisplay">LEND BOOK</button>
+    </div>
+    <div *ngIf="authorizationLevel == 2" class="container d-flex justify-content-center" >
+      <h4  [ngClass]="errorMessage.includes('unsuccessful') ? 'text-danger' : 'text-success'">{{errorMessage}}</h4>
+    </div>
+    <div *ngIf="userDisplay">
+      <div>
+        <h1>Select User</h1>
+      </div>
+      <div  class="container d-flex justify-content-center">
+        <div style="width: 45%;">
+          <p>Search by name:</p>
+          <input class="form-control" [(ngModel)]="query" type="text"/>
+        </div>
+      </div>
+      <div *ngIf="users">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Name</th>
+            <th scope="col">E-mail</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let korisnik of users | nameFilter: query" (click)="showDetail(korisnik)">
+            <td>{{korisnik._id}}</td>
+            <td>{{korisnik.name}}</td>
+            <td>{{korisnik.email}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <div class="container d-flex justify-content-center" style="padding: 10px;" *ngIf="selectedUser.name">
+          <div  class="card" style="padding: 10px; margin:0px auto; width:70%;">
+            <h5>Selected user:</h5>
+            <h5 class="card-title">{{selectedUser.name}}</h5>
+            <h5 class="card-subtitle text-muted">Id: {{selectedUser._id}}</h5>
+            <h5 class="card-text">E-mail: {{selectedUser.email}}</h5>
+            <h5 class="card-text">Address: {{selectedUser.address}}</h5>
+            <h5 class="card-text">Total late fee: {{calculateLateFee(posudbeKorisnika)}}€</h5>
+          </div>
+          <div class="container d-flex justify-content-around align-items-center">
+            <button [disabled]="canBorrow" class="btn btn-warning btn-lg" (click)="onSubmit()">LEND BOOK</button>
+            <button class="btn btn-outline-danger btn-lg" (click)="onCancel()">Cancel</button>
+          </div>
+        </div>
+        <div>
+
+        </div>
+      </div>
+    </div>
+  </div>

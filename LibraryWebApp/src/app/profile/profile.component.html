@@ -1,0 +1,32 @@
+<div *ngIf="user && user.name">
+  <div class="row">
+
+    <div class="col-sm-8" style="padding-top: 2rem;">
+      <h1>My borrowed books ({{borrowed.length}})</h1>
+  <div style="background-color: #d4af37; padding: 5px;" class="card">
+    <div class="well" style="width: 70%; padding: 5px; margin:0 auto; background-color: #e9ddb9;" *ngFor="let book of borrowed">
+      <div class="card" style="padding: 5px; margin:5px;">
+        <h4>{{bookIdToTitle(book.bookId)}}</h4>
+        <h5>{{bookIdToAuthor(book.bookId)}}</h5>
+        <div>
+
+          Borrowed on: {{book.timeStamp.split(",")[0]}}<hr> Return by: {{book.returnDate.split(",")[0]}}
+        </div></div>
+
+
+  </div>
+</div>
+    </div>
+<div class="col-sm-4" style="padding-top: 6rem;">
+<h5>User data</h5>
+  <h6>Name: {{user.name}}</h6>
+  <h6>E-mail: {{user.email}}</h6>
+  <h6>Address: {{user.address}}</h6>
+  <br>
+  <h4>Late fee: {{calculateLateFee()}}€</h4>
+  <br>
+  <button class="btn btn-outline-info" (click)="back()">Back</button>
+  </div>
+</div>
+  </div>
+

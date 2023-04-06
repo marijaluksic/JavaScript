@@ -1,0 +1,10 @@
+tbody>tr:hover {
+  cursor: pointer;
+  background-color: #86b7fe;
+}
+
+.linkknjiga {
+  font-style: oblique;
+  font-size: larger;
+}
+

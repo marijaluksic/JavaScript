@@ -1,0 +1,56 @@
+<div class="container d-flex justify-content-center">
+  <div>
+<h1>Register form:</h1>
+<form fxLayout="column" fxLayoutAlign="center center" (submit)="onRegister()" [formGroup]="registerForm">
+  <fieldset class="form-group">
+    <div>
+      <label for="name">Name</label><br>
+      <input type="text" formControlName="name" placeholder="Name" id="name" class="form-control">
+    </div>
+    <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+      <span *ngIf="registerForm.get('name')?.errors?.['required']">Field is required</span>
+      <span *ngIf="registerForm.get('name')?.errors?.['minlength']">Min. required characters: 4</span>
+    </div></fieldset><br>
+  <fieldset class="form-group">
+    <div>
+    <label for="password">Password</label><br>
+    <input type="password" formControlName="password" placeholder="Password" id="password"  class="form-control">
+    </div>
+  <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+    <span *ngIf="registerForm.get('password')?.errors?.['required']">Field is required</span>
+  </div>
+  </fieldset><br>
+  <fieldset class="form-group">
+    <div>
+    <label for="password2">Confirm password</label><br>
+    <input type="password" formControlName="password2" placeholder="Repeat password" id="password2"  class="form-control">
+  </div>
+    <div *ngIf="registerForm.get('password2')?.invalid && registerForm.get('password2')?.touched">
+      <span *ngIf="registerForm.get('password2')?.errors?.['required']">Field is required</span>
+      <span *ngIf="registerForm.get('password2')?.errors?.['matching']">Passwords must match</span>
+    </div></fieldset><br>
+
+  <fieldset class="form-group">
+    <div>
+    <label for="email">Email:</label><br>
+    <input type="email" formControlName="email" placeholder="E-mail" id="email" class="form-control">
+    </div>
+    <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+    <span *ngIf="registerForm.get('email')?.errors?.['required']">Field is required</span>
+    <span *ngIf="registerForm.get('email')?.errors?.['email']">Please enter a valid e-mail address</span>
+  </div></fieldset><br>
+  <fieldset class="form-group">
+    <div>
+      <label for="address">Address</label><br>
+      <input type="text" formControlName="address" placeholder="Address" id="address" class="form-control">
+    </div>
+    <div *ngIf="registerForm.get('address')?.invalid && registerForm.get('address')?.touched">
+      <span *ngIf="registerForm.get('address')?.errors?.['required']">Field is required</span>
+    </div>
+  </fieldset><br>
+  <p [ngClass]="errorMessage.includes('unsuccessful') ? 'text-danger' : 'text-success'">{{errorMessage}}</p>
+  <button type="submit" [disabled]="registerForm.invalid" class="btn btn-success">Register!</button><br><br>
+  <button class="btn btn-link" (click)="back()">Back to login form</button>
+</form>
+</div>
+</div>

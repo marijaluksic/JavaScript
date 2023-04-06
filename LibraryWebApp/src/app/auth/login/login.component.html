@@ -1,0 +1,25 @@
+<div class="container d-flex justify-content-center">
+  <div>
+<h1>Login</h1>
+<form class="signin-form" fxLayout="column" fxLayoutAlign="center center" (submit)="onLogin()" [formGroup]="signinForm">
+    <fieldset class="form-group">
+      <label for="email">Email</label><br>
+        <input type="email" formControlName="email" placeholder="abc@example.com" id="email">
+      <div *ngIf="signinForm.get('email')?.invalid && signinForm.get('email')?.touched">
+        <span *ngIf="signinForm.get('email')?.errors?.['required']">Field is required</span>
+        <span *ngIf="signinForm.get('email')?.errors?.['email']">Please enter a valid e-mail address</span>
+      </div>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="password">Password</label><br>
+        <input type="password" formControlName="password" placeholder="Password" id="password">
+      <div *ngIf="signinForm.get('password')?.invalid && signinForm.get('password')?.touched">
+        <span *ngIf="signinForm.get('password')?.errors?.['required']">Field is required</span>
+      </div>
+    </fieldset><br>
+  <p class="text-danger">{{errorMessage}}</p>
+    <button type="submit" [disabled]="signinForm.invalid" class="btn btn-success" style="margin-right: 5px;">Login</button>
+  <button class="btn btn-warning" type="button" (click)="register()">Register!</button>
+</form>
+</div>
+</div>

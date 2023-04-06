@@ -1,0 +1,26 @@
+<div *ngIf="user && user.username">
+  <div class="row">
+
+    <div class="col-sm-8" style="padding-top: 2rem;">
+      <p>Posts by {{user.username}} ({{komentari.length}})</p>
+  <div style="background-color: indianred; padding: 5px;" class="card">
+    <div class="well" style="width:400px; padding: 5px; margin:5px; background-color: aliceblue" *ngFor="let komentar of komentari">
+      By {{user.username}} at {{komentar.timeStamp}}<hr>
+      <div>
+        {{komentar.comment}}<hr>
+      </div>
+
+
+  </div>
+</div>
+    </div>
+<div class="col-sm-4" style="padding-top: 2rem;">
+<p>User data:</p>
+  <p>Username: {{user.username}}</p>
+  <p>E-mail: {{user.email}}</p>
+  <p>Name: {{user.name}}</p>
+  </div>
+</div>
+  </div>
+
+<button class="btn btn-link" (click)="back()">Back</button>

@@ -1,0 +1,43 @@
+<div *ngIf="user && user.username">
+  <p  style="padding: 0.375rem;">Welcome, <a (click)="profile()"  style="text-decoration: underline; color: blue;">{{user.username}}</a> ({{user.email}})</p>
+  <button class="btn btn-danger" (click)="logout()">Logout</button>
+
+
+<div><h1>Posts ({{komentari.length}}):</h1></div>
+<div style="background-color: indianred; padding: 5px;">
+  <div class="well" style="width:400px; padding: 5px; margin:5px; background-color: aliceblue" *ngFor="let komentar of komentari">
+    By {{userIdToUsername(komentar.userId)}} at {{komentar.timeStamp}}<hr>
+    <div *ngIf = "editValue != komentari.indexOf(komentar)">
+      <span >{{komentar.comment}}<hr></span>
+<div *ngIf = "komentar.userId == user._id">
+      <button (click)="onDelete(komentar._id)" class="btn btn-danger">Delete</button>
+      <button (click)="startEditing(komentar)"class="btn btn-warning">Edit</button></div></div>
+    <div *ngIf = "editValue == komentari.indexOf(komentar)">
+      <textarea #editirani rows="4" cols="50">{{komentar.comment}}</textarea><br>
+      <button (click)="onDelete(komentar._id)" class="btn btn-danger">Delete</button>
+      <button (click)="onEdit(komentar, editirani)" class="btn btn-warning">Done editing</button>
+      <br><br>
+
+      <button (click)="editValue= -1" class="btn btn-danger">Cancel</button>
+    </div>
+
+  </div>
+</div>
+<br>
+<div>
+  <div *ngIf ="addValue == false">
+  <button (click)="startAdding()" class="btn btn-warning">Add New Post</button>
+</div>
+  <div *ngIf ="addValue == true">
+    <button (click)="onCancel()" class="btn btn-danger">Cancel</button>
+    <br>
+    <label>User:</label><br>
+    <input type="text" disabled value="{{user.username}}"><br>
+    <label>Comment:</label><br>
+    <textarea [(ngModel)]="new.comment" rows="4" cols="50"></textarea><br>
+    <button (click)="addPost(user._id)" [disabled]="new.comment.length==0" id="addBtn" class="btn btn-success">Send</button>
+  </div>
+
+
+</div>
+</div>

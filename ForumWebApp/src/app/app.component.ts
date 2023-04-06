@@ -1,0 +1,29 @@
+import { Component } from '@angular/core';
+import {User} from "./user.model";
+import {Router} from "@angular/router";
+import {AuthService} from "./auth.service";
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'frontend';
+  constructor(private auth:AuthService, private router:Router){
+  }
+
+  ngOnInit(){
+
+    /*this.auth.whoAmI()
+      .subscribe((response:{status:number, user? : User})=>{
+        if (response.status==200) {
+          console.log(response);
+        } else {
+          this.router.navigate(['login'])
+        }
+      }, (err) => {
+        console.log(err);
+      });*/
+  }
+}

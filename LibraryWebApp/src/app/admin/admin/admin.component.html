@@ -1,0 +1,50 @@
+<div><h1>Add Book</h1></div>
+<form fxLayout="column" fxLayoutAlign="center center" (submit)="onAddBook()" [formGroup]="addForm">
+  <fieldset class="form-group">
+    <div>
+      <label for="title">Title</label><br>
+      <input type="text" formControlName="title" placeholder="Title" id="title" class="form-control">
+    </div>
+    <div *ngIf="addForm.get('title')?.invalid && addForm.get('title')?.touched">
+      <span *ngIf="addForm.get('title')?.errors?.['required']">Field is required</span>
+    </div></fieldset><br>
+  <fieldset class="form-group">
+    <div>
+      <label for="authorId">Author</label><br>
+      <input type="text" formControlName="authorId" placeholder="Author" id="authorId"  class="form-control">
+    </div>
+    <div *ngIf="addForm.get('authorId')?.invalid && addForm.get('authorId')?.touched">
+      <span *ngIf="addForm.get('authorId')?.errors?.['required']">Field is required</span>
+    </div>
+  </fieldset><br>
+  <fieldset class="form-group">
+    <div>
+      <label for="edition">Edition</label><br>
+      <input type="number" formControlName="edition" id="edition"  class="form-control">
+    </div>
+    <div *ngIf="addForm.get('edition')?.invalid && addForm.get('edition')?.touched">
+      <span *ngIf="addForm.get('edition')?.errors?.['required']">Field is required</span>
+    </div></fieldset><br>
+
+  <fieldset class="form-group">
+    <div>
+      <label for="publisherId">Publisher</label><br>
+      <input type="text" formControlName="publisherId" placeholder="Publisher" id="publisherId" class="form-control">
+    </div>
+    <div *ngIf="addForm.get('publisherId')?.invalid && addForm.get('publisherId')?.touched">
+      <span *ngIf="addForm.get('publisherId')?.errors?.['required']">Field is required</span>
+    </div></fieldset><br>
+  <fieldset class="form-group">
+    <div>
+      <label for="genreId">Genre</label><br>
+      <input type="text" formControlName="genreId" placeholder="Genre" id="genreId" class="form-control">
+    </div>
+    <div *ngIf="addForm.get('genreId')?.invalid && addForm.get('genreId')?.touched">
+      <span *ngIf="addForm.get('genreId')?.errors?.['required']">Field is required</span>
+    </div>
+  </fieldset><br>
+  <h4 [ngClass]="errorMessage.includes('unsuccessful') ? 'text-danger' : 'text-success'">{{errorMessage}}</h4>
+  <h4 [ngClass]="errorMessage2.includes('unsuccessful') ? 'text-danger' : 'text-success'">{{errorMessage2}}</h4>
+  <button type="submit" [disabled]="addForm.invalid" class="btn btn-success">Add book!</button><br><br>
+  <button class="btn btn-link" (click)="backToDashboard()">Back</button>
+</form>

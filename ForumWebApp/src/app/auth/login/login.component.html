@@ -1,0 +1,14 @@
+<h1>Login</h1>
+<form class="signin-form" fxLayout="column" fxLayoutAlign="center center" (submit)="onLogin()" [formGroup]="signinForm">
+    <fieldset class="form-group">
+      <label for="username">Username</label><br>
+        <input type="text" formControlName="username" placeholder="Username" id="username">
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="password">Password</label><br>
+        <input type="password" formControlName="password" placeholder="Password" id="password">
+    </fieldset><br>
+  <p class="text-danger">{{errorMessage}}</p>
+    <button type="submit" [disabled]="signinForm.invalid" class="btn btn-success" style="margin-right: 5px;">Login</button>
+  <button class="btn btn-warning" type="button" (click)="register()">Register!</button>
+</form>
